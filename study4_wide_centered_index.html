@@ -1,0 +1,232 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Shopping Experience</title><style>#study4-root{--ink:#1b1b1b;--muted:#686868;--line:#e7e5e2;--cream:#f7f6f3;--red:#c5292d}
+#study4-root *{box-sizing:border-box}
+#study4-root{margin:0;background:#f1f0ee;color:var(--ink);font:15px/1.5 Arial,Helvetica,sans-serif}
+#study4-root button,#study4-root select{font:inherit}
+#study4-root button{cursor:pointer}
+#study4-root .research{background:#202020;color:#fff;padding:12px max(22px,calc((100vw - 1140px)/2));display:flex;align-items:center;gap:12px;flex-wrap:wrap;font-size:12px}
+#study4-root .research strong{font-size:13px}
+#study4-root .research select{background:#333;color:#fff;border:1px solid #666;border-radius:4px;padding:7px}
+#study4-root .research button{border:1px solid #666;color:#fff;background:#333;padding:7px 12px;border-radius:4px}
+#study4-root .research .note{opacity:.65;margin-left:auto}
+#study4-root .shell{max-width:1140px;margin:22px auto 70px;background:white;min-height:690px;box-shadow:0 8px 45px #0000000c}
+#study4-root .mast{display:flex;align-items:center;justify-content:space-between;padding:22px 40px;border-bottom:1px solid var(--line)}
+#study4-root .brand{font-size:25px;letter-spacing:3px;font-weight:700}
+#study4-root .brand.hm{display:flex;align-items:center;justify-content:center;letter-spacing:normal}
+#study4-root .iconbar{display:flex;gap:20px;color:#444;font-size:19px}
+#study4-root .subnav{padding:13px 40px;border-bottom:1px solid var(--line);display:flex;gap:32px;font-size:11px;letter-spacing:1.6px;text-transform:uppercase;color:#555}
+#study4-root .screen{display:none}
+#study4-root .screen.active{display:block}
+#study4-root .intro{padding:84px 24px 100px;text-align:center}
+#study4-root .eyebrow{font-size:11px;letter-spacing:3px;text-transform:uppercase;color:#777}
+#study4-root .intro h1{font-family:Georgia,serif;font-size:clamp(44px,6vw,80px);font-weight:400;margin:14px 0}
+#study4-root .intro p{color:#555;font-size:17px;max-width:490px;margin:0 auto 28px}
+#study4-root .primary{background:#202020;color:#fff;border:1px solid #202020;padding:15px 28px;letter-spacing:1px;text-transform:uppercase;font-size:12px;min-width:205px}
+#study4-root .primary:disabled{opacity:.38;cursor:not-allowed}
+#study4-root .secondary{background:#fff;border:1px solid #aaa;color:#333;padding:13px 19px;letter-spacing:.7px;font-size:12px}
+#study4-root .timer-screen{text-align:center;padding:95px 20px 130px}
+#study4-root .timer-screen h2{font-family:Georgia,serif;font-weight:400;font-size:36px}
+#study4-root .number{font-size:clamp(125px,19vw,240px);font-weight:600;line-height:1.25;font-variant-numeric:tabular-nums}
+#study4-root .timer-screen .hint{color:#777;font-size:13px}
+#study4-root .product{padding:28px 40px 48px}
+#study4-root .breadcrumbs{font-size:11px;color:#888;margin-bottom:24px}
+#study4-root .product-grid{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(310px,.85fr);gap:48px}
+#study4-root .photo-wrap{background:#f6f5f3;min-height:510px;display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden}
+#study4-root .photo-wrap img{width:90%;max-width:570px;max-height:500px;object-fit:contain;transition:transform .25s}
+#study4-root .photo-wrap.zoom img{transform:scale(1.3)}
+#study4-root .photo-tag{position:absolute;top:16px;left:18px;background:#fff;padding:5px 9px;font-size:10px;letter-spacing:1px}
+#study4-root .photo-tip{position:absolute;bottom:12px;right:16px;font-size:11px;color:#777;background:#ffffffce;padding:4px 8px}
+#study4-root .gallery{display:flex;gap:9px;margin-top:12px}
+#study4-root .thumb{border:1px solid #ddd;background:#f6f5f3;width:78px;height:82px;padding:4px;overflow:hidden;display:flex;align-items:center;justify-content:center}
+#study4-root .thumb.active{border:2px solid #111}
+#study4-root .thumb img{width:100%;height:100%;object-fit:contain}
+#study4-root .thumb.detail img{transform:none}
+#study4-root .details h2{font:normal 42px Georgia,serif;margin:7px 0 8px}
+#study4-root .price{font-size:23px;margin:4px 0 25px}
+#study4-root .desc{color:#595959;font-size:14px;margin-bottom:26px}
+#study4-root .label{font-size:11px;letter-spacing:1.2px;text-transform:uppercase;margin:22px 0 9px}
+#study4-root .sizes{display:flex;gap:8px}
+#study4-root .size{width:52px;height:45px;background:white;border:1px solid #ccc}
+#study4-root .size.selected{border:2px solid #111}
+#study4-root .actions{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:26px 0 18px}
+#study4-root .actions button{min-width:0}
+#study4-root .heart{font-size:18px}
+#study4-root .accord{border-top:1px solid var(--line)}
+#study4-root .accord:last-of-type{border-bottom:1px solid var(--line)}
+#study4-root .accord button{width:100%;border:0;background:#fff;padding:17px 0;text-align:left;display:flex;justify-content:space-between;letter-spacing:.4px}
+#study4-root .accord .content{display:none;padding:0 0 17px;color:#555;font-size:13px}
+#study4-root .accord.open .content{display:block}
+#study4-root .accord ul{padding-left:20px;margin:0}
+#study4-root .footer-continue{border-top:1px solid var(--line);margin-top:35px;padding-top:24px;display:flex;justify-content:space-between;align-items:center;gap:18px}
+#study4-root .wait{font-size:13px;color:#666}
+#study4-root .end{padding:85px 30px;text-align:center}
+#study4-root .end h2{font:normal 40px Georgia,serif}
+#study4-root .end p{max-width:550px;margin:15px auto 30px;color:#666}
+#study4-root .status{margin:12px 0;color:#555;font-size:12px}
+#study4-root .mini{font-size:11px;color:#888;margin-top:20px}
+#study4-root .foot{padding:20px 40px;border-top:1px solid var(--line);color:#aaa;font-size:11px;display:flex;justify-content:space-between}
+@media (max-width:780px){#study4-root .shell{margin:0}
+#study4-root .mast{padding:18px}
+#study4-root .subnav{padding:12px 18px;gap:16px}
+#study4-root .product{padding:22px 18px}
+#study4-root .product-grid{grid-template-columns:1fr;gap:22px}
+#study4-root .photo-wrap{min-height:350px}
+#study4-root .photo-wrap img{max-height:350px}
+#study4-root .actions{grid-template-columns:1fr}
+#study4-root .footer-continue{align-items:stretch;flex-direction:column}
+#study4-root .research .note{margin-left:0}}
+#study4-root .product-description{border-top:1px solid var(--line);padding:20px 0 24px}
+#study4-root .product-description h3{font-size:15px;font-weight:600;margin:0 0 12px}
+#study4-root .product-description ul{padding-left:20px;margin:0;color:#444;font-size:14px;line-height:1.85}
+#study4-root .thumb img{max-width:100%;max-height:100%;object-fit:contain}
+#study4-root .photo-wrap{cursor:zoom-in}
+#study4-root .photo-wrap:focus-visible{outline:3px solid #333;outline-offset:3px}
+#study4-root .photo-wrap.zoom img{transform:none!important}
+#study4-root .image-modal{display:none;position:fixed;inset:0;z-index:9999;background:rgba(0,0,0,.83);align-items:center;justify-content:center;padding:60px 20px 25px}
+#study4-root .image-modal.open{display:flex}
+#study4-root .image-modal img{max-width:min(92vw,850px);max-height:82vh;object-fit:contain;background:#fff}
+#study4-root .image-close{position:absolute;top:16px;right:22px;color:white;background:transparent;border:0;font-size:40px;cursor:pointer}
+#study4-root .image-modal img{cursor:zoom-out}
+#study4-root{background:#f1f0ee;color:#1b1b1b;font:15px/1.5 Arial,Helvetica,sans-serif;overflow:hidden;}#study4-root .shell{margin:12px auto 24px;}#study4-root .brand.hm img{max-width:95px;max-height:56px;object-fit:contain;}#study4-root .image-modal{position:fixed;}#study4-root #continue{display:inline-block;}#study4-root .brand img{max-width:205px;height:60px;object-fit:contain;}
+body{margin:0;background:#f1f0ee} #study4-root .shell{width:min(1140px,calc(100% - 32px));max-width:1140px;margin:22px auto 70px} @media(max-width:780px){#study4-root .shell{width:100%;margin:0}}
+
+/* Compact desktop presentation: preserve all interactions and condition logic. */
+@media (min-width: 781px) {
+ #study4-root .shell{max-width:1000px;width:calc(100% - 32px);margin:10px auto 22px;min-height:0}
+ #study4-root .mast{padding:10px 26px;min-height:54px}
+ #study4-root .brand img{height:40px;max-width:175px}
+ #study4-root .brand.hm img{max-height:40px}
+ #study4-root .subnav{padding:8px 26px}
+ #study4-root .intro{padding:55px 20px 65px}
+ #study4-root .intro h1{font-size:56px;margin:8px 0}
+ #study4-root .timer-screen{padding:48px 20px 55px}
+ #study4-root .number{font-size:clamp(110px,16vw,170px)}
+ #study4-root .product{padding:14px 26px 20px}
+ #study4-root .breadcrumbs{margin-bottom:12px}
+ #study4-root .product-grid{grid-template-columns:minmax(0,1.1fr) minmax(300px,.9fr);gap:28px}
+ #study4-root .photo-wrap{min-height:370px}
+ #study4-root .photo-wrap img{max-height:355px;width:86%}
+ #study4-root .gallery{margin-top:6px}
+ #study4-root .thumb{width:56px;height:56px}
+ #study4-root .details h2{font-size:31px;margin:2px 0 3px}
+ #study4-root .price{font-size:20px;margin:2px 0 10px}
+ #study4-root .desc{font-size:13px;margin:0 0 9px}
+ #study4-root .label{margin:10px 0 6px}
+ #study4-root .size{width:43px;height:35px}
+ #study4-root .actions{margin:12px 0 7px}
+ #study4-root .secondary{padding:9px 12px}
+ #study4-root .status{margin:4px 0}
+ #study4-root .product-description{padding:10px 0}
+ #study4-root .product-description h3{margin:0 0 5px;font-size:13px}
+ #study4-root .product-description ul{font-size:12px;line-height:1.4}
+ #study4-root .accord button{padding:9px 0}
+ #study4-root .footer-continue{margin-top:12px;padding-top:10px;gap:10px}
+ #study4-root .primary{padding:11px 16px;min-width:170px;font-size:11px}
+ #study4-root .wait{font-size:11px}
+ #study4-root .foot{padding:10px 26px}
+}
+@media (min-width:781px) and (max-height:750px){
+ #study4-root .photo-wrap{min-height:310px}
+ #study4-root .photo-wrap img{max-height:295px}
+ #study4-root .intro{padding:35px 20px 40px}
+ #study4-root .product-description ul{line-height:1.25}
+}
+
+/* Study 4 consistent, wider desktop layout across all four conditions */
+@media (min-width:781px){
+ #study4-root .shell{width:calc(100% - 32px);max-width:1480px;margin:10px auto 22px;}
+ #study4-root .product{padding:18px clamp(26px,3vw,48px) 24px;}
+ #study4-root .product-grid{grid-template-columns:minmax(0,1.12fr) minmax(340px,.88fr);gap:clamp(28px,3vw,52px);}
+ #study4-root .photo-wrap{min-height:clamp(380px,53vh,520px);}
+ #study4-root .photo-wrap img{max-height:clamp(365px,50vh,500px);width:90%;}
+ #study4-root .intro{padding:clamp(65px,10vh,110px) 24px clamp(75px,11vh,125px);}
+ #study4-root .intro h1{font-size:clamp(56px,5vw,76px);}
+ #study4-root .timer-screen{padding:clamp(65px,10vh,105px) 20px clamp(75px,11vh,125px);}
+ #study4-root .details h2{font-size:clamp(33px,3vw,40px);}
+}
+/* Center the actual logo independently of unequal left/right header icons. */
+#study4-root .mast{position:relative;min-height:78px;}
+#study4-root .mast .brand,#study4-root .mast .brand.hm{
+ position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);
+ display:flex;align-items:center;justify-content:center;
+ width:clamp(170px,26vw,290px);height:68px;margin:0;
+}
+#study4-root .mast .brand img,#study4-root .mast .brand.hm img{
+ display:block!important;max-width:100%!important;width:auto!important;
+ height:auto!important;max-height:64px!important;object-fit:contain!important;
+}
+#study4-root .mast .brand.hm img{max-width:175px!important;max-height:67px!important;}
+@media(max-width:780px){
+ #study4-root .mast{min-height:68px;}
+ #study4-root .mast .brand{width:190px;height:60px;}
+ #study4-root .mast .brand img{max-height:52px!important;}
+ #study4-root .mast .brand.hm img{max-width:120px!important;max-height:54px!important;}
+}
+</style></head><body>
+<div id="study4-root"><main class="shell"><header class="mast"><span style="font-size:20px">☰</span><div class="brand" id="brandLogo">LOUIS VUITTON</div><div class="iconbar"><span>⌕</span><span>♡</span><span>♧</span></div></header><nav class="subnav"><span>New arrivals</span><span>Clothing</span><span>Collections</span><span>Discover</span></nav><section class="screen active intro" id="intro"><div class="eyebrow">Introducing a new arrival</div><h1>Shadow Flex</h1><p id="introCopy">Discover our newest T-shirt, designed with premium cotton and everyday comfort.</p><button class="primary" id="start">Discover the new arrival</button></section><section class="screen timer-screen" id="timer"><div class="eyebrow">Get ready</div><h2>Let's count together</h2><div aria-live="off" class="number" id="number">10</div><div class="hint">Your product preview will begin shortly.</div></section><section class="screen product" id="product"><div class="breadcrumbs">Home / Clothing / T-Shirts / Shadow Flex</div><div class="product-grid"><div><div aria-label="Enlarge T-shirt image" class="photo-wrap" id="photo" role="button" tabindex="0"><span class="photo-tag">NEW ARRIVAL</span><img alt="Black crew-neck T-shirt" id="shirt" src="https://bryant.co1.qualtrics.com/ControlPanel/Graphic.php?IM=IM_YtabW3aJidpYjDT"/><span class="photo-tip">Click image to zoom</span></div><div class="gallery"></div></div><div class="details"><div class="eyebrow">New arrival · Clothing</div><h2>Shadow Flex</h2><div class="price" id="price">$390.00</div><p class="desc" id="shortDesc">High-end luxury designer T-shirt in premium cotton, designed for wearing comfort.</p><div class="label">Select size <span id="selectedSize" style="color:#888;letter-spacing:0;text-transform:none"></span></div><div class="sizes"><button class="size" data-size="S">S</button><button class="size" data-size="M">M</button><button class="size" data-size="L">L</button><button class="size" data-size="XL">XL</button></div><div class="actions"><button class="secondary" id="save"><span class="heart">♡</span> Save for later</button></div><div aria-live="polite" class="status" id="savedMsg"></div><div class="product-description" id="descriptionAcc"><h3>Product description</h3><ul id="descriptionList"></ul></div><div class="accord" id="fabricAcc"><button id="fabricToggle" type="button">Material &amp; care <span>+</span></button><div class="content">Cotton T-shirt. Follow the garment's care label for washing and drying.</div></div><div class="footer-continue"><div class="wait" id="wait">Please explore the product. Continue available in 20 seconds.</div><button class="primary" disabled="" id="continue">Continue to survey</button></div></div></div></section><footer class="foot"><span>SHOPPING EXPERIENCE</span><span>Simulated shopping experience · No purchases</span></footer></main>
+<div class="image-modal" id="imageModal"><button class="image-close" id="closeImage">×</button><img id="largeShirt"/></div></div><script>(function () {
+  var params = new URLSearchParams(window.location.search);
+  var token = params.get("token") || "";
+  var root = document.getElementById('study4-root');
+  if (!root) return;
+  var $ = function(id){ return root.querySelector('#'+id); };
+  var brand = (params.get("brand") || "").trim().toUpperCase();
+  var direction = (params.get("count_direction") || "").trim().toLowerCase();
+  if ((brand !== 'LV' && brand !== 'HM') || (direction !== 'up' && direction !== 'down')) {
+    root.innerHTML='<div style="padding:24px;background:#fff">The shopping experience could not load. Please contact the study administrator.</div>';
+    return;
+  }
+  var isHM=brand==='HM', started=false, productStartedAt=0, size='', saved=false, zoomed=false, unlocked=false;
+
+  var details = {
+    LV:{price:'$390.00',intro:'Discover our newest T-shirt, blending high-end fashion with premium comfort.',desc:'High-end luxury designer T-shirt in premium cotton, designed for wearing comfort.',bullets:['High-end luxury designer T-shirt','Premium cotton','A high level of wearing comfort T-shirt']},
+    HM:{price:'$8.99',intro:'Discover our newest T-shirt, blending affordable fashion with everyday comfort.',desc:'Affordable T-shirt in cotton, designed for wearing comfort.',bullets:['Affordable T-shirt','Cotton','A high level of wearing comfort T-shirt']}
+  };
+  var d=details[brand];
+  $('brandLogo').innerHTML = '<img alt="'+(isHM?'H&amp;M':'Louis Vuitton')+'" src="'+(isHM?'https://bryant.co1.qualtrics.com/ControlPanel/Graphic.php?IM=IM_nztAWgNnfMzyLa6':'https://bryant.co1.qualtrics.com/ControlPanel/Graphic.php?IM=IM_yTmsqgOlg5RBQQ2')+'" style="display:block;max-width:'+(isHM?'88px':'205px')+';height:60px;object-fit:contain">';
+  $('brandLogo').className='brand'+(isHM?' hm':'');
+  $('introCopy').textContent=d.intro;
+  $('price').textContent=d.price;
+  $('shortDesc').textContent=d.desc;
+  $('descriptionList').innerHTML='';
+  d.bullets.forEach(function(x){var li=document.createElement('li');li.textContent=x;$('descriptionList').appendChild(li);});
+  var metrics = {};
+  function save(name,value){metrics[name]=value;}
+  save('brand',brand);save('count_direction',direction);
+  save('image_zoomed',0);save('saved_for_later',0);save('size_selected','');save('product_view_seconds',0);
+  function show(id){root.querySelectorAll('.screen').forEach(function(x){x.classList.toggle('active',x.id===id);});root.scrollIntoView({block:'start',behavior:'auto'});}
+  function setZoom(on){$('imageModal').classList.toggle('open',on);if(on){zoomed=true;save('image_zoomed',1);$('largeShirt').src=$('shirt').src;}}
+  $('photo').addEventListener('click',function(){setZoom(true);});
+  $('photo').addEventListener('keydown',function(e){if(e.key==='Enter'||e.key===' '){e.preventDefault();setZoom(true);}});
+  $('closeImage').addEventListener('click',function(){setZoom(false);});
+  $('imageModal').addEventListener('click',function(e){if(e.target===$('imageModal')||e.target===$('largeShirt'))setZoom(false);});
+  root.querySelectorAll('.size').forEach(function(b){b.addEventListener('click',function(){size=b.textContent.trim();root.querySelectorAll('.size').forEach(function(x){x.classList.toggle('selected',x===b);});$('selectedSize').textContent=size;save('size_selected',size);});});
+  $('save').addEventListener('click',function(){saved=!saved;save('saved_for_later',saved?1:0);$('savedMsg').textContent=saved?'Saved for later':'';});
+  var fabric=$('fabricToggle');if(fabric)fabric.addEventListener('click',function(){$('fabricAcc').classList.toggle('open');});
+  $('start').addEventListener('click',function(){
+    if(started)return;started=true;show('timer');
+    var numbers=direction==='down'?[10,9,8,7,6,5,4,3,2,1,0]:[0,1,2,3,4,5,6,7,8,9,10];
+    var i=0;$('number').textContent=numbers[0];
+    var interval=setInterval(function(){i++;if(i<numbers.length){$('number').textContent=numbers[i];}else{clearInterval(interval);show('product');productStartedAt=Date.now();startProductTimer();}},1000);
+  });
+  function startProductTimer(){
+    var t=setInterval(function(){
+      var elapsed=Math.max(0,(Date.now()-productStartedAt)/1000);
+      save('product_view_seconds',elapsed.toFixed(1));
+      if(elapsed>=20){clearInterval(t);unlocked=true;$('wait').textContent='You may now return to the survey.';$('continue').disabled=false;}
+      else{$('wait').textContent='Please explore the product. You can continue in '+Math.ceil(20-elapsed)+' seconds.';}
+    },250);
+  }
+  $('continue').addEventListener('click',function(){
+    if(!unlocked || !productStartedAt || Date.now()-productStartedAt < 20000) return;
+    save('product_view_seconds',((Date.now()-productStartedAt)/1000).toFixed(1));
+    var payload={type:'study4-shopping-complete',token:token,brand:brand,count_direction:direction,metrics:metrics};
+    if(window.opener && !window.opener.closed){
+      window.opener.postMessage(payload,'https://bryant.co1.qualtrics.com');
+      $('wait').textContent='Shopping complete. Return to the Qualtrics tab to continue.';
+      try{window.opener.focus();}catch(e){}
+      setTimeout(function(){window.close();},350);
+    }else{
+      $('wait').textContent='Shopping complete. Please return to the Qualtrics survey tab. If you opened this page directly, return using your survey link.';
+    }
+  });
+})();</script></body></html>
